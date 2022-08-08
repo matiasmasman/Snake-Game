@@ -7,21 +7,21 @@ posicion_x = 15
 posicion_y = 15
 posicion_food = (15, 15)
 posicion_snake = [(75, 75)]
-nueva_posicion =[(15, 15)]
+nueva_posicion = [(15, 15)]
 
 #------- FUNCIONES -------
 
 def coordenadas_snake():
-    global direccion, posicion_snake, x, y ,nueva_posicion
+    global direccion, posicion_snake, x, y, nueva_posicion
 
-    if direction =='up': # arriba
+    if direction == 'up': # arriba
         y = y - 30
         nueva_posicion[0:] = [(x, y)]
         if y >= 495:
             y = 15
         elif y <= 0:
             y = 465
-    elif direction =='down':  # abajo
+    elif direction == 'down':  # abajo
         y = y + 30
         nueva_posicion[0:] = [(x, y)]
         if y >= 495:
@@ -45,7 +45,7 @@ def coordenadas_snake():
 
     posicion_snake = nueva_posicion + posicion_snake[:-1]
 
-    for parte, lugar in zip(canvas.find_withtag("snake"), posicion_snake):
+    for parte, lugar in zip(canvas.find_withtag('snake'), posicion_snake):
         canvas.coords(parte, lugar)
 
 def direccion(event):
@@ -66,7 +66,7 @@ def direccion(event):
 
 def movimiento():
     global posicion_food, posicion_snake,nueva_posicion
-    posiciones = [15, 45, 75,105,135,165, 195, 225, 255, 285, 315, 345, 375, 405, 435, 465]
+    posiciones = [15, 45, 75, 105, 135, 165, 195, 225, 255, 285, 315, 345, 375, 405, 435, 465]
 
     coordenadas_snake()
 
@@ -87,7 +87,7 @@ def movimiento():
         cruzar_snake()
 
     for i in posicion_snake:
-        if len(posicion_snake) == 10:
+        if len(posicion_snake) == 3:
             maximo_nivel()
 
     cantidad.after(500, movimiento)
@@ -98,7 +98,7 @@ def cruzar_snake():
 
 def maximo_nivel():
     canvas.delete(ALL)
-    canvas.create_text(canvas.winfo_width() / 2, canvas.winfo_height() / 2, text=f"EXCELENTE\n\n °° FIN °° \n\n XXX", fill='green2', font=('Arial', 35 ,'bold'))
+    canvas.create_text(canvas.winfo_width() / 2, canvas.winfo_height() / 2, text=f"EXCELENTE\n\n °° FIN °°", fill='green2', font=('Game Over', 35 ,'bold'))
 
 def salir ():
     root.destroy()
@@ -112,9 +112,9 @@ root.resizable(0, 0)
 
 #--------------------------
 
-frame_1 = Frame(root, width=485, height=25, bg='black')
+frame_1 = Frame(root, bg='black')
 frame_1.grid(row=0, column=0, padx=20, pady=10)
-frame_2 = Frame(root, width=485, height=490, bg='black')
+frame_2 = Frame(root)
 frame_2.grid(row=1, column=0, padx=20, pady=10)
 
 root.bind("<KeyPress-Up>", lambda event:direccion('up'))
@@ -125,8 +125,8 @@ root.bind("<KeyPress-Right>",  lambda event:direccion('right'))
 canvas = Canvas(frame_2, bg='black', width=479, height=479)
 canvas.pack()
 
-for i in range(0,460,30):
-    for j in range(0,460,30):
+for i in range(0, 460, 30):
+    for j in range(0, 460, 30):
         canvas.create_rectangle(i, j, i + 30, j + 30, fill='gray10')
 
 
