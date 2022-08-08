@@ -102,7 +102,6 @@ def maximo_nivel():
 
 def salir ():
     root.destroy()
-    root.quit()
 
 #--------------------------
 
@@ -133,13 +132,13 @@ for i in range(0,460,30):
 
 canvas.create_text(75, 75, text='X', fill='red2', font = ('Arial', 18), tag = 'food')
 
-button1 = Button(frame_1, text='Salir', bg='orange', command = salir)
-button1.grid(row=0, column=0, padx=20)
+botonSalir = Button(frame_1, text='Salir', bg='orange', command = salir)
+botonSalir.grid(row=0, column=0, padx=20)
 
-button2 = Button(frame_1, text='Iniciar', bg='aqua', command = movimiento)
-button2.grid(row=0, column=1, padx=20)
+botonIniciar = Button(frame_1, text='Iniciar', bg='aqua', command = movimiento)
+botonIniciar.grid(row=0, column=1, padx=20)
 
-cantidad =Label(frame_1, text='Cantidad X :', bg='black', fg = 'red', font=('Arial',12, 'bold'))
+cantidad = Label(frame_1, text='Cantidad X :', bg='black', fg = 'red', font=('Arial', 12, 'bold'))
 cantidad.grid(row=0, column=2, padx=20)
 
 root.mainloop()
